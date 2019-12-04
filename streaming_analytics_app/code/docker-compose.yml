@@ -1,0 +1,29 @@
+version: '2'
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_NODE_NAME=rabbit@sensor
+    volumes:
+      - 'rabbitmq_data:/data'
+  nodejs:
+      build: .
+      environment:
+        - NODE_ENV=production
+      ports:
+        - "8000:8000"
+      networks: 
+        - service
+      depends_on:
+        - rabbitmq
+networks:
+  service:
+    driver: "bridge"
+volumes:
+  rabbitmq_data:
+
+      
+

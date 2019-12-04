@@ -1,0 +1,28 @@
+version: '2'
+services:
+  express:
+      build: .
+      depends_on:
+        - cassandra
+      environment:
+        - NODE_ENV=production
+      ports:
+        - "8000:8000"
+      links: 
+        - cassandra
+      networks: 
+        - service
+      command: node index.js
+  cassandra:
+      image: cassandra
+      ports:
+        - "9042:9042"
+      networks:
+        - service
+      restart: always
+networks:
+  service:
+    driver: "bridge"
+
+      
+

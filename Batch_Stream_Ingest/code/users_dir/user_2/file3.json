@@ -1,0 +1,9 @@
+{"phone": {
+    "debug": "pause",
+    "window": {
+        "title": "Sample Konfabulator Widget",
+        "name": "second_window",
+        "width": 500,
+        "height": 500
+    }
+}}
